@@ -2,11 +2,89 @@
 body, html {
     height: 100vh;
     margin: 0;
-	background: #861F41;
+	background: #508590;
 	height: 100vh;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	overflow: hidden;
+}
+
+/* Banner */
+.banner_body {
+	position: absolute;
+	top: 2vh;
+	left: 32.5vw;
+	height: 10vh;
+	width: 35vw;
+	background-color: #FFFFFF;
+	z-index: 1;
+	border: 6px solid #000000;
+	animation-name: float_banner_body;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forward;
+}
+@keyframes float_banner_body {
+	0% {top: 2vh;}
+	50% {top: 4vh;}
+	100% {top: 2vh;}
+}
+.left_tail {
+	position: absolute;
+	top: 1vh;
+	left: 25vw;
+	height: 8vh;
+	width: 20vw;
+	background-color: #FFFFFF;
+	z-index: 0;
+	border-top-right-radius: 1vh;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20% 50%);
+	border: 6px solid #000000;
+	animation-name: float_left_tail;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forward;
+}
+@keyframes float_left_tail {
+	0% {top: 1vh;}
+	50% {top: 2.5vh;}
+	100% {top: 1vh;}
+}
+.right_tail {
+	position: absolute;
+	top: 2vh;
+	right: 25vw;
+	height: 8vh;
+	width: 20vw;
+	background-color: #FFFFFF;
+	z-index: 0;
+	border-bottom-right-radius: 1vh;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20% 50%);
+	transform: rotate(180deg);
+	border: 6px solid #000000;
+	animation-name: float_right_tail;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forward;
+}
+@keyframes float_right_tail {
+	0% {top: 1vh;}
+	50% {top: 2.5vh;}
+	100% {top: 1vh;}
+}
+
+/* Header statement */
+.header_statement {
+	position: relative;
+	top: 2vh;
+	text-align: center;
+	font-size: 200%;
+	z-index: 2;
+	animation-name: float_banner_body;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forward;
 }
 
 /* Timeout Countdown Box */
@@ -16,35 +94,56 @@ body, html {
 	right: 0%;
 	width: 10vw;
 	height: 10vw;
-	color: white;
+	color: #FFFFFF;
 }
 
 /* Smiley Face Button */
-#button1 {
+#smileyButton {
 	position: absolute;
-	width: 40vw;
+	width: 35vw;
+	height: 35vw;
 	border: none;
 	left: 10vw;
-	top: 10vh;
-    border-radius: 50%;
-	background-color: #508590;
+	bottom: 10vh;
+    border-radius: 45%;
+	background-color: transparent;
+	animation-fill-mode: forwards;
+}
+@keyframes rollSmileyOut {
+	from {transform: rotate(0deg); left: 10vw;}
+	to {transform: rotate(-45deg); left: 0vw;}
+}
+@keyframes rollSmileyIn {
+	from {transform: rotate(-45deg); left: 0vw;}
+	to {transform: rotate(0deg); left: 10vw;}
 }
 
-/* Frowney Face Button */
-#button2 {
+/* Frowny Face Button */
+#frownyButton {
 	position: absolute;
-	width: 40vw;
+	width: 35vw;
+	height: 35vw;
 	border: none;
 	right: 10vw;
-	top: 10vh;
-    border-radius: 50%;
-	background-color: #508590;
+	bottom: 10vh;
+    border-radius: 45%;
+	background-color: transparent;
+	animation-fill-mode: forwards;
+}
+@keyframes rollFrownyOut {
+	from {transform: rotate(0deg); right: 10vw;}
+	to {transform: rotate(45deg); right: 0vw;}
+}
+@keyframes rollFrownyIn {
+	from {transform: rotate(45deg); right: 0vw;}
+	to {transform: rotate(0deg); right: 10vw;}
 }
 
 /* Smile and Frown images */
 #image1, 
 #image2 {
-	font-size: 40vw;
+	font-size: 35vw;
+	color: white;
 }
 
 /* The Modal (background) */
@@ -64,14 +163,14 @@ body, html {
 /* Modal Content */
 .modal-content {
 	position: relative;
-	background-color: #D7D2CB;
+	background-color: #FFFFFF;
 	margin: auto;
 	padding: 0;
 	border: 1px solid #888;
 	width: 80%;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatetop;
-	animation-duration: 0.4s
+	animation-duration: 0.4s;
 }
 
 /* Modal Dropdown Animation */
@@ -104,55 +203,98 @@ body, html {
 .modal-body {
 	text-align: center;
 	padding: 2px 16px;
+	height: 30vh;
+	background-color: #FFFFFF;
+	animation-fill-mode: forwards;
+}
+@keyframes modalSmaller {
+	from {height: 40vh;}
+	to {height: 30vh;}
+}
+@keyframes modalBigger {
+	from {height: 30vh;}
+	to {height: 40vh;}
 }
 .feedback_question {
 	font-size: 200%;
-	color: #FFFFFF;
+	color: #000000;
+}
+#main_statement {
+	position: relative;
+	top: 4%;
+	animation-fill-mode: forwards;
+}
+@keyframes center_text {
+	from {top: 4%;}
+	to {top: 20%;}
+}
+#modal-footer {
+	height: 8vh;
+}
+@keyframes footerBigger {
+	from {height: 8vh;}
+	to{height: 10vh;}
 }
 #yes_feedback {
 	text-align: center;
 	font-size: 200%;
-	position: relative;
-	top: 70%;
-	left: -10%;
-	width: 30%;
-	height: 6vh;
+	position: fixed;
+	top: 37.5%;
+	width: 20%;
+	height: 8vh;
 	border: 4px solid #000000;
-	background-color: #ADD8E6;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
-	color: #FFFFFF;
+	background-color: #2CD5C4;
+	color: #000000;
 	display: inline;
+	animation-name: swooshYes;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+@keyframes swooshYes {
+	0% {left: 30%; opacity:0; display: none}
+	40% {left: 30%; opacity:0; display: inline}
+	100% {left: 23%; opacity:1; display: inline}
 }
 #no_feedback {
 	text-align: center;
 	font-size: 200%;
-	position: relative;
-	top: 70%;
-	left: 10%;
-	width: 30%;
-	height: 6vh;
+	position: fixed;
+	top: 37.5%;
+	width: 20%;
+	height: 8vh;
 	border: 4px solid #000000;  
-	background-color: #ADD8E6;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
-	color: #FFFFFF;
+	background-color: #2CD5C4;
+	color: #000000;
 	display: inline;
+	animation-name: swooshNo;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+@keyframes swooshNo {
+	0% {right: 30%; opacity:0; display: none}
+	40% {right: 30%; opacity:0; display: inline}
+	100% {right: 23%; opacity:1; display: inline}
 }
 #feedback {
+	position: relative;
 	width: 60vw;
 	height: 20vh;
+	top: 2vh;
 	padding: 12px 20px;
 	margin: 8px 0;
 	box-sizing: border-box;
 	border: 4px solid black;
-	border-radius: 0.5vw;
 	background-color: #f8f8f8;
 	display: none;
+	resize: none;
+	font-size: 150%;
+	animation-name: fadeIn;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+	from {opacity: 0;}
+	to {opacity: 1;}
 }
 .modal-footer {
 	text-align: center;
@@ -170,11 +312,20 @@ body, html {
 	height: 6vh;
 	border: 4px solid #000000;  
 	background-color: #CE0058;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
 	color: #FFFFFF;
     opacity: 0.4;
     cursor: not-allowed;
+	animation-fill-mode: forwards;
+}
+@keyframes fadeOut {
+	from {opacity: 0.4;}
+	to {opacity: 0;}
+}
+@keyframes submitBigger {
+	from {width: 15vw; height: 6vh; top: 2vh;}
+	to {width: 20%; height: 8vh; top: 1vh;}
+}
+@keyframes submitSmaller {
+	from {width: 20%; height: 8vh; top: 1vh;}
+	to {width: 15vw; height: 6vh; top: 2vh;}i
 }
