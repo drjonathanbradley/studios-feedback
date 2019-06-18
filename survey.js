@@ -13,8 +13,8 @@ var json = {
 var modal = document.getElementById("smileyModal");
 
 // Buttons that open the modal
-var btn1 = document.getElementById("button1");
-var btn2 = document.getElementById("button2");
+var btn1 = document.getElementById("smileyButton");
+var btn2 = document.getElementById("frowneyButton");
 
 // The <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -23,12 +23,38 @@ var span = document.getElementsByClassName("close")[0];
 btn1.onclick = function() {
 	json.was_happy = true;
 	modal.style.display = "block";
+	rollSmileyOut();
 }
 
 // When the user clicks a button, open the modal
 btn2.onclick = function() {
 	json.was_happy = false;
 	modal.style.display = "block";
+	rollFrowneyOut();
+}
+
+// Rolls smiley button out 
+function rollSmileyOut () {
+	btn1.style.animationDuration = "0.4s";
+	btn1.style.animationName = "rollSmileyOut";
+}
+
+// Rolls frowney button out 
+function rollFrowneyOut () {
+	btn2.style.animationDuration = "0.4s";
+	btn2.style.animationName = "rollFrowneyOut";
+}
+
+// Rolls smiley button in
+function rollSmileyIn () {
+	btn1.style.animationDuration = "0.4s";
+	btn1.style.animationName = "rollSmileyIn";
+}
+
+// Rolls frowney button in 
+function rollFrowneyIn () {
+	btn2.style.animationDuration = "0.4s";
+	btn2.style.animationName = "rollFrowneyIn";
 }
 
 // When the user clicks on <span> (x), reload the page
@@ -40,6 +66,12 @@ span.onclick = function() {
 window.onclick = function(event) {
 	if (event.target == modal) {
 		modal.style.display = "none";
+		if (btn1.style.animationName == "rollSmileyOut") {
+			rollSmileyIn();
+		}
+		if (btn2.style.animationName == "rollFrowneyOut") {
+			rollFrowneyIn();
+		}
 	}
 }
 
@@ -55,8 +87,10 @@ var submit_button = document.getElementById("submit");
 // Variable for identifying when submit should be clickable
 var submit_clickable = false;
 
-// Feedback box
+// Feedback box, modal body, and "Thank You" text
+var modal_body = document.getElementsByClassName("modal-body")[0];
 var feedback = document.getElementById("feedback");
+var thanks_text = document.getElementById("main_statement");
 
 // Make the initial text go away when feedback box is clicked on
 var firstClick = true;
@@ -77,6 +111,8 @@ yes.onclick = function() {
 	submit_clickable = true;
 	submit_button.style.opacity = 1;
 	submit_button.style.cursor = "pointer";
+	modal_body.style.height = "40vh";
+	makeModalBigger();
 }
 
 // Clicking no to leave feedback
@@ -84,9 +120,27 @@ no.onclick = function() {
 	json.left_feedback = false;
 	no.style.display = "none";
 	yes.style.display = "none";
-	submit_button.style.display = "none";
+	fadeSubmit();
 	thankYou();
 	submit();
+}
+
+// Fade submit button away 
+function fadeSubmit() {
+	submit_button.style.animationDuration = "2s";
+	submit_button.style.animationName = "fadeOut";
+}
+
+// Make modal bigger
+function makeModalBigger() {
+	modal_body.style.animationDuration = "0.2s";
+	modal_body.style.animationName = "modalBigger";
+}
+
+// Make modal smaller
+function makeModalSmaller() {
+	modal_body.style.animationDuration = "0.2s";
+	modal_body.style.animationName = "modalSmaller";
 }
 
 // Turns the popup screen into thank-you message
@@ -94,10 +148,10 @@ function thankYou() {
 	yes.style.display = "none";
 	no.style.display = "none";
 	feedback.style.display = "none";
-	document.getElementById("main_statement").innerHTML = "Thank you for your feedback!";
-	submit_button.style.opacity = 0.4;
 	submit_button.style.cursor = "not-allowed";
 	submit_clickable = false;
+	thanks_text.innerHTML = "Thank you for your feedback!";
+	makeThanksText();
 }
 
 // Timeout variables
@@ -140,8 +194,17 @@ function submit() {
 	submit_timeout();
 	if (submit_clickable) {
 		json.feedback = feedback.value;
+		makeModalSmaller();
 		thankYou();
 		//the line below will be replaced with the ajax call
 		console.log(json);
+		modal_body.style.height = "25vh";
+		fadeSubmit();
 	}
+}
+
+// Move "Thank You" text
+function makeThanksText() {
+	thanks_text.style.animationDuration = "1s";
+	thanks_text.style.animationName = "center_text";
 }
