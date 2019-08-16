@@ -286,9 +286,9 @@ body, html {
 /* The icon at the bottom middle */
 .icon {
 	position: absolute;
-	left: 45vw;
+	left: 42vw;
 	bottom: 10vh;
-	width: 20vh;
+	width: 30vh;
 	display: inline;
 	z-index: 2;
 }

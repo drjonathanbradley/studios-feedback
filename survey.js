@@ -1,9 +1,12 @@
 // Set up data object/package to send to server
 var json = {
-	was_happy : null,
-	left_feedback: false,
-	feedback: null
-};
+	"resource": [
+		{
+			"rating": "Positive Experience",
+			"message": "Something here."
+		}
+	]
+}
 
 
 //---------- The functions of the smiley and frowny buttons ------------------------------------------------------/
@@ -21,7 +24,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks a button, open the modal 
 btn1.onclick = function() {
-	json.was_happy = true;
+	json.resource.rating = "Positive Experience";
 	modal.style.display = "block";
 	rollSmileyOut();
 	submit_timeout();
@@ -29,7 +32,7 @@ btn1.onclick = function() {
 
 // When the user clicks a button, open the modal
 btn2.onclick = function() {
-	json.was_happy = false;
+	json.resource.rating = "Negative Experience";
 	modal.style.display = "block";
 	rollFrownyOut();
 	submit_timeout();
@@ -102,7 +105,6 @@ feedback.onclick = function() {
 
 // Clicking yes to leave feedback
 yes.onclick = function() {
-	json.left_feedback = true;
 	feedback.style.display = "inline";
 	yes.style.display = "none";
 	no.style.display = "none";
@@ -117,14 +119,13 @@ yes.onclick = function() {
 
 // Clicking no to leave feedback
 no.onclick = function() {
-	json.left_feedback = false;
 	no.style.display = "none";
 	yes.style.display = "none";
-	submit_clickable = true;
-	submit_button.style.opacity = 1;
-	submit_button.style.cursor = "pointer";
+	//submit_clickable = true;
+	//submit_button.style.opacity = 1;
+	//submit_button.style.cursor = "pointer";
 	thankYou();
-	fadeSubmit();
+	submit_data();
 }
 
 // Fade submit button away 
@@ -162,10 +163,11 @@ function thankYou() {
 	yes.style.display = "none";
 	no.style.display = "none";
 	feedback.style.display = "none";
+	fadeSubmit();
 	submit_button.style.cursor = "not-allowed";
 	submit_clickable = false;
 	thanks_text.innerHTML = "Thank you for your feedback!";
-	makeThanksText();
+	//makeThanksText();
 }
 
 // Timeout variables
@@ -210,18 +212,22 @@ function clearTimeouts() {
 
 
 // Clicking submit button
-function submit() {
+function submit_data() {
 	submit_timeout();
 	if (submit_clickable) {
-		json.feedback = feedback.value;
+		json.resource.message = feedback.value;
 		if (json.left_feedback)
 			makeModalSmaller();
 		thankYou();
-		//the line below will be replaced with the ajax call
-		console.log(json);
 		modal_body.style.height = "25vh";
 		fadeSubmit();
 	}
+	$.ajax({
+		type: 'POST',
+		url: "https://api.vtlibraries.us/api/v2/feedback_dev/_table/virtualstudio",
+		headers: { "X-DreamFactory-Api-Key" : "fae544ded62c47c7d12368b33150b7eedfe0c14941d0d48240fb8d9fa83dee8e" },
+		data: json
+	});
 }
 
 // Move "Thank You" text
