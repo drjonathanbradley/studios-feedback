@@ -24,7 +24,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks a button, open the modal 
 btn1.onclick = function() {
-	json.resource.rating = "Positive Experience";
+	json.resource[0].rating = "Positive Experience";
 	modal.style.display = "block";
 	rollSmileyOut();
 	submit_timeout();
@@ -32,7 +32,7 @@ btn1.onclick = function() {
 
 // When the user clicks a button, open the modal
 btn2.onclick = function() {
-	json.resource.rating = "Negative Experience";
+	json.resource[0].rating = "Negative Experience";
 	modal.style.display = "block";
 	rollFrownyOut();
 	submit_timeout();
