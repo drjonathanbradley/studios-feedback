@@ -29,6 +29,7 @@ header {
 header h1.header_h1 {
   color: white;
   font-size: 4em;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Footer image */
@@ -42,16 +43,6 @@ footer {
 
 footer img.icon {
   width: 400px;
-}
-
-/* Timeout Countdown Box */
-#countdown {
-  position: absolute;
-  top: 0%;
-  right: 0%;
-  width: 10vw;
-  height: 10vw;
-  color: #ffffff;
 }
 
 /* Main content */
@@ -113,6 +104,41 @@ main {
   100% {
     transform: scale(1);
   }
+}
+
+/* Aside Modal */
+
+aside {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  background: transparent;
+  border: none;
+}
+
+aside button.subchoice {
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border: none;
+  color: white;
+  font-size: 3em;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0.5em 0;
+}
+
+aside button.subchoice div.icon {
+  margin-right: 1em;
+  width: 65px;
+}
+
+aside button .subchoice-text h2.choice-text {
+  margin: 0;
 }
 
 /* The Modal (background) */
