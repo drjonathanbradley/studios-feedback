@@ -3,7 +3,7 @@ var json = {
   resource: [
     {
       rating: 'Positive Experience',
-      message: 'Something here.',
+      message: '',
     },
   ],
 }
@@ -38,10 +38,14 @@ btn2.onclick = function() {
   json.resource[0].rating = 'Negative Experience'
   rollFrownyOut()
   submit_timeout()
+  $('.staff').text('Staff was Unhelpful')
+  $('.tech').text("Didn't Have What I Needed")
+  $('.avail').text('Technology was Broken')
   $('main').fadeOut('slow', function() {
     $('aside')
       .fadeIn()
       .css('display', 'flex')
+    $('.message').text('What did you dislike about your experience?')
   })
 }
 
