@@ -9,6 +9,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -26,10 +27,10 @@ header {
   justify-content: center;
 }
 
-header h1.header_h1 {
+header h1.message {
   color: white;
   font-size: 4em;
-  font-family: 'Open Sans', sans-serif;
+  margin: 0.25em 0;
 }
 
 /* Footer image */
@@ -118,27 +119,46 @@ aside {
   border: none;
 }
 
-aside button.subchoice {
+aside .button-container button.subchoice {
   background: transparent;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   border: none;
   color: white;
-  font-size: 3em;
+  font-size: 2.5em;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   margin: 0.5em 0;
 }
 
-aside button.subchoice div.icon {
+aside .button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+aside .button-container button.subchoice div.icon {
   margin-right: 1em;
   width: 65px;
 }
 
-aside button .subchoice-text h2.choice-text {
+aside .button-container button .subchoice-text h2.choice-text {
   margin: 0;
+}
+
+/* Summary section */
+summary {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+summary h2.thanks {
+  font-size: 3em;
+  color: white;
 }
 
 /* The Modal (background) */

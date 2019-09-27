@@ -23,17 +23,26 @@ var span = document.getElementsByClassName('close')[0]
 // When the user clicks a button, open the modal
 btn1.onclick = function() {
   json.resource[0].rating = 'Positive Experience'
-  modal.style.display = 'block'
   rollSmileyOut()
   submit_timeout()
+  $('main').fadeOut('slow', function() {
+    $('aside')
+      .fadeIn()
+      .css('display', 'flex')
+    $('.message').text('What did you enjoy about your experience?')
+  })
 }
 
 // When the user clicks a button, open the modal
 btn2.onclick = function() {
   json.resource[0].rating = 'Negative Experience'
-  modal.style.display = 'block'
   rollFrownyOut()
   submit_timeout()
+  $('main').fadeOut('slow', function() {
+    $('aside')
+      .fadeIn()
+      .css('display', 'flex')
+  })
 }
 
 // When the user clicks on <span> (x), reload the page
