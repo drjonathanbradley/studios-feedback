@@ -36,22 +36,6 @@ btn2.onclick = function() {
   submit_timeout()
 }
 
-// Rolls smiley button out
-function rollSmileyOut() {
-  btn1.style.animationDuration = '0.4s'
-  btn2.style.animationName = 'none'
-  btn1.style.animationName = 'rollSmileyOut'
-  btn1.style.animationIterationCount = '1'
-}
-
-// Rolls frowny button out
-function rollFrownyOut() {
-  btn2.style.animationDuration = '0.4s'
-  btn1.style.animationName = 'none'
-  btn2.style.animationName = 'rollFrownyOut'
-  btn2.style.animationIterationCount = '1'
-}
-
 // When the user clicks on <span> (x), reload the page
 span.onclick = function() {
   location.reload(true)
@@ -103,36 +87,6 @@ no.onclick = function() {
   yes.style.display = 'none'
   thankYou()
   submit_data()
-}
-
-// Fade submit button away
-function fadeSubmit() {
-  submit_button.style.animationDuration = '2s'
-  submit_button.style.animationName = 'fadeOut'
-}
-
-// Make modal bigger
-function makeModalBigger() {
-  modal_body.style.animationDuration = '0.2s'
-  modal_body.style.animationName = 'modalBigger'
-}
-
-// Make modal smaller
-function makeModalSmaller() {
-  modal_body.style.animationDuration = '0.2s'
-  modal_body.style.animationName = 'modalSmaller'
-}
-
-//Make submit button bigger
-function makeSubmitBigger() {
-  submit_button.style.animationDuration = '0.2s'
-  submit_button.style.animationName = 'submitBigger'
-}
-
-//Make footer bigger
-function makeFooterBigger() {
-  footer.style.animationDuration = '0.2s'
-  footer.style.animationName = 'footerBigger'
 }
 
 // Turns the popup screen into thank-you message
@@ -222,13 +176,60 @@ function submit_data() {
   }
   $.ajax({
     type: 'POST',
-    url: 'https://api.vtlibraries.us/api/v2/feedback_dev/_table/virtualstudio',
+    url: config.url,
     headers: {
-      'X-DreamFactory-Api-Key':
-        'fae544ded62c47c7d12368b33150b7eedfe0c14941d0d48240fb8d9fa83dee8e',
+      'X-DreamFactory-Api-Key': config.key,
     },
     data: json,
   })
+}
+
+// Animations
+
+// Rolls smiley button out
+function rollSmileyOut() {
+  btn1.style.animationDuration = '0.4s'
+  btn2.style.animationName = 'none'
+  btn1.style.animationName = 'rollSmileyOut'
+  btn1.style.animationIterationCount = '1'
+}
+
+// Rolls frowny button out
+function rollFrownyOut() {
+  btn2.style.animationDuration = '0.4s'
+  btn1.style.animationName = 'none'
+  btn2.style.animationName = 'rollFrownyOut'
+  btn2.style.animationIterationCount = '1'
+}
+
+// Fade submit button away
+function fadeSubmit() {
+  submit_button.style.animationDuration = '2s'
+  submit_button.style.animationName = 'fadeOut'
+}
+
+// Make modal bigger
+function makeModalBigger() {
+  modal_body.style.animationDuration = '0.2s'
+  modal_body.style.animationName = 'modalBigger'
+}
+
+// Make modal smaller
+function makeModalSmaller() {
+  modal_body.style.animationDuration = '0.2s'
+  modal_body.style.animationName = 'modalSmaller'
+}
+
+//Make submit button bigger
+function makeSubmitBigger() {
+  submit_button.style.animationDuration = '0.2s'
+  submit_button.style.animationName = 'submitBigger'
+}
+
+//Make footer bigger
+function makeFooterBigger() {
+  footer.style.animationDuration = '0.2s'
+  footer.style.animationName = 'footerBigger'
 }
 
 // Move "Thank You" text
