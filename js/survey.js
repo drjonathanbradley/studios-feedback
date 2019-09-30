@@ -46,6 +46,16 @@ btn2.onclick = function() {
   })
 }
 
+$('.subchoice').on('click', function() {
+  json.resource[0].message = $(this)
+    .children('.subchoice-text')
+    .children('.choice-text')
+    .text()
+  console.log(json.resource[0].message)
+  thankYou()
+  submit_data()
+})
+
 // Turns the popup screen into thank-you message
 function thankYou() {
   $('aside, .message').fadeOut('slow', function() {
@@ -121,14 +131,7 @@ function clearTimeouts() {
 
 // Clicking submit button
 function submit_data() {
-  submit_timeout()
-  if (submit_clickable) {
-    json.resource.message = feedback.value
-    if (json.left_feedback) makeModalSmaller()
-    thankYou()
-    modal_body.style.height = '25vh'
-    fadeSubmit()
-  }
+  console.log('Submission begun')
   $.ajax({
     type: 'POST',
     url: config.url,
@@ -137,6 +140,13 @@ function submit_data() {
     },
     data: json,
   })
+    .done(function() {
+      console.log('Successful')
+    })
+    .fail(function(err) {
+      console.log(err)
+    })
+  submit_timeout()
 }
 
 // Animations
