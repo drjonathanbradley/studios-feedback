@@ -2,7 +2,7 @@
 var json = {
   resource: [
     {
-      rating: 'Positive Experience',
+      rating: '',
       message: '',
     },
   ],
@@ -16,9 +16,6 @@ var modal = document.getElementById('smileyModal')
 // Buttons that open the modal
 var btn1 = document.getElementById('smileyButton')
 var btn2 = document.getElementById('frownyButton')
-
-// The <span> element that closes the modal
-var span = document.getElementsByClassName('close')[0]
 
 // When the user clicks a button, open the modal
 btn1.onclick = function() {
@@ -49,68 +46,13 @@ btn2.onclick = function() {
   })
 }
 
-// When the user clicks on <span> (x), reload the page
-span.onclick = function() {
-  location.reload(true)
-}
-
-//---------- The functions in the feedback dropdown (after is has been opened) ------------------------------------------------------/
-
-// Yes, no, and submit buttons
-var yes = document.getElementById('yes_feedback')
-var no = document.getElementById('no_feedback')
-var submit_button = document.getElementById('submit')
-
-// Variable for identifying when submit should be clickable
-var submit_clickable = false
-
-// Feedback box, modal body, and "Thank You" text
-var modal_body = document.getElementsByClassName('modal-body')[0]
-var feedback = document.getElementById('feedback')
-var thanks_text = document.getElementById('main_statement')
-var footer = document.getElementsByClassName('modal-footer')[0]
-
-// Make the initial text go away when feedback box is clicked on
-var firstClick = true
-feedback.onclick = function() {
-  feedback_timeout()
-  if (firstClick) {
-    feedback.innerHTML = ''
-  }
-  firstClick = false
-}
-
-// Clicking yes to leave feedback
-yes.onclick = function() {
-  feedback.style.display = 'inline'
-  yes.style.display = 'none'
-  no.style.display = 'none'
-  submit_clickable = true
-  submit_button.style.opacity = 1
-  submit_button.style.cursor = 'pointer'
-  modal_body.style.height = '40vh'
-  makeSubmitBigger()
-  makeFooterBigger()
-  makeModalBigger()
-}
-
-// Clicking no to leave feedback
-no.onclick = function() {
-  no.style.display = 'none'
-  yes.style.display = 'none'
-  thankYou()
-  submit_data()
-}
-
 // Turns the popup screen into thank-you message
 function thankYou() {
-  yes.style.display = 'none'
-  no.style.display = 'none'
-  feedback.style.display = 'none'
-  fadeSubmit()
-  submit_button.style.cursor = 'not-allowed'
-  submit_clickable = false
-  thanks_text.innerHTML = 'Thank you for your feedback!'
+  $('aside, .message').fadeOut('slow', function() {
+    $('summary')
+      .fadeIn()
+      .css('display', 'flex')
+  })
 }
 
 // Timeout variables
