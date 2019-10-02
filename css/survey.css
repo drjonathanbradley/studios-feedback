@@ -117,6 +117,7 @@ aside {
   flex-wrap: nowrap;
   background: transparent;
   border: none;
+  height: 100%;
 }
 
 aside .button-container button.subchoice {
@@ -130,14 +131,17 @@ aside .button-container button.subchoice {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin: 0.5em 0;
+  /* margin: 0.5em 0; */
+  padding: 2em;
 }
 
 aside .button-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
+  height: 100%;
+  margin: 1.5em 0;
 }
 
 aside .button-container button.subchoice div.icon {
