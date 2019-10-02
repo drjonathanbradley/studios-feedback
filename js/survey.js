@@ -21,7 +21,7 @@ var btn2 = document.getElementById('frownyButton')
 btn1.onclick = function() {
   json.resource[0].rating = 'Positive Experience'
   rollSmileyOut()
-  submit_timeout()
+  submit_timeout(30000)
   $('main').fadeOut('slow', function() {
     $('aside')
       .fadeIn()
@@ -34,7 +34,7 @@ btn1.onclick = function() {
 btn2.onclick = function() {
   json.resource[0].rating = 'Negative Experience'
   rollFrownyOut()
-  submit_timeout()
+  submit_timeout(30000)
   $('.staff').text('Staff was Unhelpful')
   $('.tech').text("Didn't Have What I Needed")
   $('.avail').text('Technology was Broken')
@@ -47,13 +47,14 @@ btn2.onclick = function() {
 }
 
 $('.subchoice').on('click', function() {
+  clearTimeout(timer)
   json.resource[0].message = $(this)
     .children('.subchoice-text')
     .children('.choice-text')
     .text()
   console.log(json.resource[0].message)
   thankYou()
-  submit_data()
+  submit_timeout(15000)
 })
 
 // Turns the popup screen into thank-you message
@@ -65,71 +66,18 @@ function thankYou() {
   })
 }
 
-// Timeout variables
-var five_sec, four_sec, three_sec, two_sec, one_sec, final_time
-var countdown = document.getElementById('countdown')
-
-// Timeout for idle feedback screen
-function feedback_timeout() {
-  clearTimeouts()
-  five_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 5 seconds'
-  }, 295000)
-  four_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 4 seconds'
-  }, 296000)
-  three_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 3 seconds'
-  }, 297000)
-  two_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 2 seconds'
-  }, 298000)
-  one_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 1 second'
-  }, 299000)
-  final_time = setTimeout(function() {
-    location.reload(true)
-  }, 300000)
-}
+// Timeout variable
+var timer
 
 // Timeout for idle after-submission screen
 // Also used for the timeout that starts after clicking smiley or frowny face
-function submit_timeout() {
-  clearTimeouts()
-  five_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 5 seconds'
-  }, 25000)
-  four_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 4 seconds'
-  }, 26000)
-  three_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 3 seconds'
-  }, 27000)
-  two_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 2 seconds'
-  }, 28000)
-  one_sec = setTimeout(function() {
-    countdown.innerHTML = 'Timeout in 1 second'
-  }, 29000)
-  final_time = setTimeout(function() {
-    location.reload(true)
-  }, 30000)
+function submit_timeout(time) {
+  timer = setTimeout(function() {
+    submit_data()
+  }, time)
 }
 
-// Clear timeouts
-function clearTimeouts() {
-  if (five_sec != null && final_time != null) {
-    clearTimeout(five_sec)
-    clearTimeout(four_sec)
-    clearTimeout(three_sec)
-    clearTimeout(two_sec)
-    clearTimeout(one_sec)
-    clearTimeout(final_time)
-    countdown.innerHTML = ''
-  }
-}
-
-// Clicking submit button
+// Submitting data
 function submit_data() {
   console.log('Submission begun')
   $.ajax({
@@ -142,11 +90,12 @@ function submit_data() {
   })
     .done(function() {
       console.log('Successful')
+      location.reload(true)
     })
     .fail(function(err) {
       console.log(err)
+      alert('There has been an error: ' + err)
     })
-  submit_timeout()
 }
 
 // Animations
