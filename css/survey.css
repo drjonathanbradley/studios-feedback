@@ -57,7 +57,7 @@ main {
 /* Smile and Frown images */
 #smile,
 #frown {
-  font-size: 35em;
+  font-size: 40em;
   color: white;
 }
 
@@ -131,8 +131,7 @@ aside .button-container button.subchoice {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* margin: 0.5em 0; */
-  padding: 2em;
+  padding: 1em;
 }
 
 aside .button-container {
